@@ -1,0 +1,88 @@
+/* ==UserStyle==
+@name         X (Twitter) Vertical Display Optimizer
+@namespace    github.com/falcon
+@version      1.0.0
+@description  Optimizes X.com layout for vertical/portrait displays - collapses left nav to icons, expands timeline width
+@author       falcon
+@license      MIT
+@preprocessor default
+==/UserStyle==
+*/
+
+@-moz-document domain("x.com"), domain("twitter.com") {
+  @media (orientation: portrait) {
+    /* Left nav: icon only (88px) */
+    header[role="banner"] {
+      width: 88px !important;
+      min-width: 88px !important;
+      max-width: 88px !important;
+      flex-shrink: 0 !important;
+      overflow: hidden !important;
+    }
+    header[role="banner"] div[style] {
+      left: 0px !important;
+      width: 88px !important;
+      margin-left: 0px !important;
+    }
+    header[role="banner"] nav a > div > div > span {
+      display: none !important;
+    }
+
+    /* "More" button: icon only */
+    [data-testid="AppTabBar_More_Menu"] {
+      width: 52px !important;
+      overflow: hidden !important;
+    }
+    [data-testid="AppTabBar_More_Menu"] > div > div > span {
+      display: none !important;
+    }
+
+    /* "Post" button: round icon only */
+    [data-testid="SideNav_NewTweet_Button"],
+    a[href="/compose/post"] {
+      width: 52px !important;
+      height: 52px !important;
+      border-radius: 50% !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    [data-testid="SideNav_NewTweet_Button"] span:not([aria-hidden]),
+    a[href="/compose/post"] span:not([aria-hidden]) {
+      display: none !important;
+    }
+
+    /* Main column: stretch to fill available space */
+    main[role="main"] {
+      max-width: none !important;
+      flex: 1 1 0% !important;
+      min-width: 0 !important;
+      align-items: stretch !important;
+    }
+    main[role="main"] > div,
+    main[role="main"] > div > div,
+    main[role="main"] > div > div > div {
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    /* Primary column: fill remaining space */
+    [data-testid="primaryColumn"] {
+      max-width: none !important;
+      flex: 1 1 0% !important;
+      min-width: 0 !important;
+    }
+
+    /* Right sidebar: keep original size */
+    [data-testid="sidebarColumn"] {
+      flex-shrink: 0 !important;
+    }
+
+    /* Remove 600px timeline width limit */
+    [data-testid="primaryColumn"] .r-f8sm7e {
+      max-width: 100% !important;
+    }
+  }
+}
