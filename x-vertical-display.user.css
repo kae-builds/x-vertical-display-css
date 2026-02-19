@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         X (Twitter) Vertical Display Optimizer
 @namespace    github.com/kae-builds
-@version      1.1.0
+@version      1.2.0
 @description  Optimizes X.com layout for vertical/portrait displays - collapses left nav to icons, expands timeline width
 @author       falcon
 @license      MIT
@@ -21,6 +21,7 @@
 
     /* Left nav fixed inner element: constrain width AND click area to 88px */
     header[role="banner"] .r-aqfbo4 {
+      left: 0px !important;
       width: 88px !important;
       max-width: 88px !important;
       overflow: hidden !important;
